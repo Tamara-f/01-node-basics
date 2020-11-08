@@ -4,7 +4,9 @@
   "description": "",
   "main": "for_imp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,11 @@
   },
   "homepage": "https://github.com/Tamara-f/01-node-basics#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "yargs": "^16.1.0"
   },
   "devDependencies": {
-    "mocha": "8.2.1",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6"
   }
 }
