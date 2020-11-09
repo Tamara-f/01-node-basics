@@ -4,10 +4,6 @@ const argv = require('yargs').argv;
 
 const contacts = require('./contacts.js');
 
-//Сделай импорт модуля contacts.js в файле index.js
-// и проверь работоспособность функций для работы с контактами.
-
-// TODO: рефакторить
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
