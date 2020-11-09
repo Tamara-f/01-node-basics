@@ -21,7 +21,8 @@ async function removeContact(contactId) {
 
 async function addContact(name, email, phone) {
   const arr = JSON.parse(listContacts());
-  const nextId = arr.length + 1;
+  const maxContactsId = arr.map(el => el.id);
+  const nextId = Math.max(...maxContactsId) + 1;
 
   const newContact = {
     id: nextId,
@@ -29,10 +30,7 @@ async function addContact(name, email, phone) {
     email: email,
     phone: phone,
   };
-
-  console.log(newContact);
   arr.push(newContact);
-  console.log(arr);
   await fsPromises.writeFile(contactsPath, JSON.stringify(arr, null, 2));
 }
 
