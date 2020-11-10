@@ -1,5 +1,3 @@
-const express = require('express');
-const yargs = require('yargs');
 const argv = require('yargs').argv;
 
 const contacts = require('./contacts.js');

@@ -4,8 +4,10 @@ const path = require('path');
 
 const contactsPath = path.join(__dirname, './db/contacts.json');
 
-function listContacts() {
-  return fs.readFileSync(contactsPath, 'utf-8', (err, data) => {});
+async function listContacts() {
+  fs.readFile(contactsPath, 'utf-8', (err, data) => {
+    console.log(data);
+  });
 }
 
 async function getContactById(contactId) {
