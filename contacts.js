@@ -25,8 +25,11 @@ async function removeContact(contactId) {
 
 async function addContact(name, email, phone) {
   const arr = await listContacts();
-  const contactsIds = arr.map(el => el.id);
-  const nextId = Math.max(...contactsIds) + 1;
+  let nextId = 1;
+  if (arr.length >= 1) {
+    const contactsIds = arr.map(el => el.id);
+    nextId = Math.max(...contactsIds) + 1;
+  }
 
   const newContact = {
     id: nextId,
