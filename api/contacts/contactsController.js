@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const contacts = require('../../db/contacts.json');
+const contactsRewriteFile = require('../../contacts');
 
 class ContactController {
   //getters
@@ -36,8 +37,8 @@ class ContactController {
       id: Math.max(...contacts.map(el => el.id)) + 1,
     };
     contacts.push(newContact);
-    console.log(contacts);
-    return res.status(201).send('contact Added');
+    contactsRewriteFile.addContact(contacts);
+    return res.status(201).send('contact added');
   }
 
   _updateContact(req, res, next) {
@@ -48,7 +49,7 @@ class ContactController {
         ...contacts[targetContactIndex],
         ...req.body,
       };
-      console.log(contacts);
+      contactsRewriteFile.addContact(contacts);
       return res.status(200).send('updated');
     } catch (error) {
       next(error);
@@ -61,6 +62,7 @@ class ContactController {
 
       contacts.splice(targetContactIndex, 1);
       console.log(contacts);
+      contactsRewriteFile.addContact(contacts);
       return res.status(200).send('contact deleted');
     } catch (error) {
       next(error);

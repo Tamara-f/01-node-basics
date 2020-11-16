@@ -23,22 +23,22 @@ async function removeContact(contactId) {
 }
 // removeContact(11);
 
-async function addContact(name, email, phone) {
-  const arr = await listContacts();
-  let nextId = 1;
-  if (arr.length >= 1) {
-    const contactsIds = arr.map(el => el.id);
-    nextId = Math.max(...contactsIds) + 1;
-  }
+async function addContact(contacts) {
+  // const arr = await listContacts();
+  // let nextId = 1;
+  // if (arr.length >= 1) {
+  //   const contactsIds = arr.map(el => el.id);
+  //   nextId = Math.max(...contactsIds) + 1;
+  // }
 
-  const newContact = {
-    id: nextId,
-    name: name,
-    email: email,
-    phone: phone,
-  };
-  arr.push(newContact);
-  await fs.writeFile(contactsPath, JSON.stringify(arr, null, 2));
+  // const newContact = {
+  //   id: nextId,
+  //   name: name,
+  //   email: email,
+  //   phone: phone,
+  // };
+  // arr.push(newContact);
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 }
 
 // addContact({ name: 'Nick' });
