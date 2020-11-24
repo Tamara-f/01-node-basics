@@ -1,7 +1,5 @@
 const { Router } = require('express');
-const { getContactById } = require('./contacts.model');
-const contactsController = require('./contactsController');
-const ContactController = require('./contactsController');
+// const contactsController = require('./contactsController');
 
 const {
   getContactsController,
