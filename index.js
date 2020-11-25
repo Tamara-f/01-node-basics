@@ -1,4 +1,3 @@
-// const contactRouter = require('./api/contacts/contactRouters');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 require('dotenv').config();
@@ -21,4 +20,5 @@ const runServer = async () => {
     process.exit(1);
   }
 };
+
 runServer();

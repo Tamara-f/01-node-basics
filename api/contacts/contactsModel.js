@@ -5,6 +5,9 @@ const contactSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true, unique: true },
     name: { type: String, required: true, default: 'Noname' },
+    password: { type: String, required: true, default: 'password' },
+    subscription: { type: String, required: true, default: 'free' },
+    token: { type: String, required: true, default: '' },
   },
   { versionKey: false }
 );

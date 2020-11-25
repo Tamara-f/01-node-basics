@@ -3,12 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
-// const mongoose = require('mongoose');
-
-// const dotenv = require('dotenv');
-// require('dotenv').config();
 
 const contactRouter = require('./contacts/contactRouters');
+const authRouter = require('./auth/authRouter');
 
 module.exports = class ContactServer {
   constructor() {
@@ -34,6 +31,7 @@ module.exports = class ContactServer {
     this.server.use(cors({ origin: 'http://localhost:3000' }));
   }
   initRoutes() {
+    this.server.use('/auth', authRouter);
     this.server.use('/contacts', contactRouter);
   }
 
