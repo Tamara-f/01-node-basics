@@ -4,9 +4,6 @@ const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 
-const dotenv = require('dotenv');
-require('dotenv').config();
-
 const contactRouter = require('./contacts/contactRouters');
 
 module.exports = class ContactServer {
@@ -23,12 +20,10 @@ module.exports = class ContactServer {
     this.server = express();
   }
   initMiddlewares() {
-    // create a write stream (in append mode)
     const accessLogStream = fs.createWriteStream(
       path.join(__dirname, 'access.log'),
       { flags: 'a' }
     );
-    // setup the logger
     this.server.use(morgan('combined', { stream: accessLogStream }));
 
     this.server.use(express.json());
