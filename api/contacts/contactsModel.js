@@ -7,7 +7,7 @@ const contactSchema = new mongoose.Schema(
     name: { type: String, required: true, default: 'Noname' },
     password: { type: String, required: true, default: 'password' },
     subscription: { type: String, required: true, default: 'free' },
-    token: { type: String, required: true, default: '' },
+    token: { type: String, default: '' },
   },
   { versionKey: false }
 );

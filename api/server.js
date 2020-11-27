@@ -5,7 +5,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const contactRouter = require('./contacts/contactRouters');
-const authRouter = require('./auth/authRouter');
 
 module.exports = class ContactServer {
   constructor() {
@@ -31,7 +30,6 @@ module.exports = class ContactServer {
     this.server.use(cors({ origin: 'http://localhost:3000' }));
   }
   initRoutes() {
-    this.server.use('/auth', authRouter);
     this.server.use('/contacts', contactRouter);
   }
 
