@@ -5,20 +5,25 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const contactRouter = require('./contacts/contactRouters');
+const authRouter = require('./auth/authRouters');
+const usersRouter = require('./auth/usersRouter');
 
 module.exports = class ContactServer {
   constructor() {
     this.server = null;
   }
+
   start() {
     this.initServer();
     this.initMiddlewares();
     this.initRoutes();
     this.startListening();
   }
+
   initServer() {
     this.server = express();
   }
+
   initMiddlewares() {
     const accessLogStream = fs.createWriteStream(
       path.join(__dirname, 'access.log'),
@@ -29,8 +34,11 @@ module.exports = class ContactServer {
     this.server.use(express.json());
     this.server.use(cors({ origin: 'http://localhost:3000' }));
   }
+
   initRoutes() {
     this.server.use('/contacts', contactRouter);
+    this.server.use('/auth', authRouter);
+    this.server.use('/users', usersRouter);
   }
 
   startListening() {

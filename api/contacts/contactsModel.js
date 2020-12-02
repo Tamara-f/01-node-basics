@@ -8,6 +8,7 @@ const contactSchema = new mongoose.Schema(
     password: { type: String, required: true, default: 'password' },
     subscription: { type: String, required: true, default: 'free' },
     token: { type: String, default: '' },
+    owner: { type: mongoose.SchemaTypes.ObjectId, ref: 'user' },
   },
   { versionKey: false }
 );
@@ -20,7 +21,6 @@ class Contact {
     return await this.db.find();
   };
   getContactById = async contactId => {
-    console.log('start ById:', contactId);
     return await this.db.findById(contactId);
   };
   createContact = async contactData => {
