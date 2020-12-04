@@ -9,11 +9,8 @@ const { UnauthorizedError } = require('../helpers/errors.constructor');
 
 class AuthController {
   getUserController = async (req, res, next) => {
-    const users = [req.user];
-    const [userForResponse] = users.map(user => {
-      const { email, password, subscription, token } = user;
-      return { email, subscription };
-    });
+    const { email, password, subscription, token } = [req.user];
+    const [userForResponse] = { email, subscription };
     return res.status(200).json(userForResponse);
   };
 
