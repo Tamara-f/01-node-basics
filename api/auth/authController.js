@@ -9,8 +9,9 @@ const { UnauthorizedError } = require('../helpers/errors.constructor');
 
 class AuthController {
   getUserController = async (req, res, next) => {
-    const { email, password, subscription, token } = [req.user];
-    const [userForResponse] = { email, subscription };
+    const user = req.user;
+    const { email, password, subscription, token } = user;
+    const userForResponse = { email, subscription };
     return res.status(200).json(userForResponse);
   };
 
@@ -62,6 +63,7 @@ class AuthController {
       const authorizationHeader = req.get('Authorization') || '';
       const token = authorizationHeader.replace('Bearer ', '');
       let userId;
+
       try {
         userId = await jwt.verify(token, process.env.JWT_SECRET_KEY).id;
       } catch (e) {
@@ -70,7 +72,6 @@ class AuthController {
       }
 
       const user = await UsersModel.findById(userId);
-
       if (!user || user.token !== token) {
         throw new UnauthorizedError('Not authorized');
       }
