@@ -22,4 +22,6 @@ AuthRouter.post(
   AuthController.logoutController
 );
 
+AuthRouter.get('/verify/:token', AuthController.verify);
+
 module.exports = AuthRouter;
