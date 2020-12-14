@@ -3,6 +3,7 @@ const upload = require('../helpers/multer.js');
 const moveFileToPublic = require('../helpers/moveFile');
 
 const AuthController = require('./authController');
+const userModel = require('./userModel.js');
 
 const UserRouter = Router();
 
@@ -14,10 +15,10 @@ UserRouter.get(
 
 UserRouter.patch(
   '/avatar',
-  upload.single('avatar'),
   AuthController.authorize,
+  upload.single('avatar'),
   moveFileToPublic,
-  AuthController.updateUser
+  AuthController.updateAvatar
 );
 
 module.exports = UserRouter;

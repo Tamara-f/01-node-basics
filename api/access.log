@@ -1,2 +1,4 @@
-::1 - - [09/Dec/2020:10:18:42 +0000] "POST /form-data HTTP/1.1" 200 50 "-" "PostmanRuntime/7.26.8"
-::1 - - [09/Dec/2020:10:19:19 +0000] "PATCH /users/avatar HTTP/1.1" 200 50 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/Dec/2020:15:36:31 +0000] "POST /auth/register HTTP/1.1" 201 231 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/Dec/2020:15:36:57 +0000] "POST /auth/login HTTP/1.1" 200 437 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/Dec/2020:15:37:12 +0000] "GET /images/5fd7867f556aa34f14ec73a1.png HTTP/1.1" 200 14888 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+::1 - - [14/Dec/2020:15:38:29 +0000] "PATCH /users/avatar HTTP/1.1" 200 54 "-" "PostmanRuntime/7.26.8"

@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Tamara-f/01-node-basics#readme",
   "dependencies": {
+    "avatar-builder": "^1.0.1",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.23.0",

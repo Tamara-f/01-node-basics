@@ -1,8 +1,7 @@
 const { Router } = require('express');
+const AuthRouter = Router();
 
 const AuthController = require('./authController');
-
-const AuthRouter = Router();
 
 AuthRouter.post(
   '/register',

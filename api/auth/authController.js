@@ -12,15 +12,39 @@ class AuthController {
     const userForResponse = { email, subscription };
     return res.status(200).json(userForResponse);
   };
+  updateUser = async (req, res, next) => {
+    try {
+      const user = req.user;
+
+      await UsersModel.logout(user._id);
+      res.status(204).send('No Content');
+    } catch (e) {
+      next(e);
+    }
+  };
 
   updateUser = async (req, res, next) => {
     try {
-      console.log(req.body);
-      const { _id, ...data } = req.body;
-      const avatarPath = req.file.path; //tmp/images.png"
+      const { id, ...data } = req.user;
+      // console.log('id, data', id, data);
+      const updateUser = await UsersModel.updateUser(id, data);
+      res.status(200).json(updateUser);
+    } catch (e) {
+      next(e);
+    }
+  };
 
-      const updatedUser = await UsersModel.updateUser(_id, data);
-      res.status(200).json(`'avatarUrl:' ${avatarPath}`);
+  updateAvatar = async (req, res, next) => {
+    try {
+      const user = req.user;
+      // console.log('updateAvatar', user._id);
+      await UsersModel.updateUser(user._id, {
+        avatarURL: `localhost:3000/images/${req.file.filename}`,
+      });
+
+      res
+        .status(200)
+        .json(`avatarUrl: 'localhost:3000/images/${req.file.filename}'`);
     } catch (e) {
       next(e);
     }
@@ -29,8 +53,8 @@ class AuthController {
   registrationController = async (req, res, next) => {
     try {
       const { email } = req.body;
-      const user = await UsersModel.findByEmail(email);
-      if (user) {
+      const checkEmail = await UsersModel.findByEmail(email);
+      if (checkEmail) {
         return res.status(409).send("'message': 'Email in use'");
       }
       const newUser = await UsersModel.createUser(req.body);
