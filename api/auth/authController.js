@@ -1,6 +1,11 @@
 const bcrypt = require('bcryptjs');
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
+require('dotenv').config();
+const path = require('path');
+
+const IMG_DIR = path.join(process.cwd(), 'public', 'images', '/');
 
 const UsersModel = require('./userModel');
 const { UnauthorizedError } = require('../helpers/errors.constructor');
@@ -37,11 +42,20 @@ class AuthController {
   updateAvatar = async (req, res, next) => {
     try {
       const user = req.user;
-      // console.log('updateAvatar', user._id);
+
+      const string = req.user.avatarURL;
+
       await UsersModel.updateUser(user._id, {
         avatarURL: `localhost:3000/images/${req.file.filename}`,
       });
+      const fileName = string.slice(21);
 
+      await fs.unlink(path.join(IMG_DIR, fileName), err => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      });
       res
         .status(200)
         .json(`avatarUrl: 'localhost:3000/images/${req.file.filename}'`);
